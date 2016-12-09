@@ -59,7 +59,7 @@ post '/clients/new' do
   client.assign_barber
   @barbers = Barber.all
   @clients = Client.all
-
+binding.pry
   erb(:index)
 end
 
