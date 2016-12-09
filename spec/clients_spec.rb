@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Client do
   before do
-    @client1 = Client.new(:name => 'JaRutherford', :id => nil)
+    @client1 = Client.new(:name => 'JaRutherford', :preference => 'trim', :id => nil)
   end
 
   describe ".all" do
@@ -19,16 +19,24 @@ describe Client do
   end
   describe '#==' do
     it "returns true when two objects attributes are the same" do
-      client  = Client.new(:id => nil, :name => "Bruce Willis")
+      client  = Client.new(:id => nil, :preference => 'trim', :name => "Bruce Willis")
       expect(client).to eq(client)
     end
   end
   describe '#delete' do
     it "returns an empty array when only item is deleted" do
-      client  = Client.new(:id => nil, :name => "Bruce Willis")
+      client  = Client.new(:id => nil, :preference => 'trim', :name => "Bruce Willis")
       client.save
       client.delete
       expect(Client.all).to eq([])
+    end
+  end
+  describe '#update' do
+    it "updates a clients preference" do
+      client  = Client.new(:id => nil, :preference => 'trim', :name => "Bruce Willis")
+      client.save
+      client.update('preference', 'buzz')
+      expect(Client.all[0].preference).to eq('buzz')
     end
   end
 end
