@@ -1,0 +1,13 @@
+<h1><%= @barber.name %></h1>
+
+<form href="/barber/<%= @barber.name %>" method ="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="update_name">Update your name:</label>
+  <input type="text" name="update_name" class="form-control">
+  <button type="submit" class="btn btn-danger">Update</button>
+</form>
+
+<form action="/barber/<%= @barber.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>

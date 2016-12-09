@@ -1,0 +1,54 @@
+
+<div class="row well">
+  <div class="col-sm-6">
+    <h1>Today's waiting list:</h1>
+    <% @clients.each do |client| %>
+      <h3><a href='/client/<%= client.id %>'><%= client.name %></a></h3>
+      <h4>In for: <%= client.preference %></h4>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <h1>Meet our Barbers:</h1>
+    <% @barbers.each do |barber| %>
+      <h3><a href='/barber/<%= barber.id %>'><%= barber.name %></a></h3>
+      <h4><%= barber.specialty %></h4>
+      <a href="#"><button class="btn btn-danger" type="button">Book an appointment</button></a>
+    <% end %>
+  </div>
+</div>
+<div class="row well">
+  <div class="col-sm-6">
+    <form action="/clients/new" method="post">
+      <p>New client?</p>
+      <div class="form-group">
+        <label for="name">Your name:</label>
+        <input type="text" name="name" class="form-control">
+        <label for="specialty">What are you looking for?</label>
+        <select class="form-control" name="preference">
+          <option>mustache wax</option>
+          <option>beard trim</option>
+          <option>haircut</option>
+          <option>shave</option>
+        </select>
+        <button type="submit" class="btn btn-danger">Find a barber</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <form action="/barbers/new" method="post">
+      <p>Are you a barber? Would you like to join the team?</p>
+      <div class="form-group">
+        <label for="barber_name">Your name:</label>
+        <input type="text" name="barber_name" class="form-control">
+        <label for="specialty">Your specialty:</label>
+        <select class="form-control" name="specialty">
+          <option>mustache wax</option>
+          <option>beard trim</option>
+          <option>haircut</option>
+          <option>shave</option>
+        </select>
+        <button type="submit" class="btn btn-danger">Join</button>
+      </div>
+    </form>
+  </div>
+</div>

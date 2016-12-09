@@ -19,8 +19,13 @@ class Client
   def update(key, value)
     DB.exec("UPDATE clients SET #{key} = '#{value}' WHERE id = #{self.id};")
   end
-  def assign_barber(barber)
-    DB.exec("UPDATE clients SET barber_id = '#{barber.id}' WHERE id = #{self.id};")
+  def assign_barber(preference)
+    barb_id = 0
+    barbers = DB.exec("SELECT * FROM barbers WHERE specialty LIKE '%#{preference}%'")
+    barbers.each do |barber|
+      barb_id = barber['id'].to_i
+    end
+    DB.exec("UPDATE clients SET barber_id = #{barb_id} WHERE id = #{self.id} RETURNING barber_id;")
   end
 
   def self.all

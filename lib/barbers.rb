@@ -6,7 +6,7 @@ class Barber
     @id = attributes[:id]
   end
   def save
-    result = DB.exec("INSERT INTO barbers (name) VALUES ('#{name}') RETURNING id;")
+    result = DB.exec("INSERT INTO barbers (name, specialty) VALUES ('#{name}','#{specialty}') RETURNING id;")
     @id = result[0]['id'].to_i
   end
   def ==(other)
@@ -14,7 +14,6 @@ class Barber
   end
   def delete
     DB.exec("DELETE FROM barbers WHERE id = #{self.id()};")
-    binding.pry
     DB.exec("UPDATE clients SET barber_id = NULL WHERE barber_id = #{self.id()};")
   end
   def update(key, value)
