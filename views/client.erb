@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-6">
     <h1><%= @client.name %></h1>
-    <h4>In for: <%= @client.preference %></h4>
-    <h4>with: <%= @client.barber_name %></h4>
+    <h4>You entered: <%= @client.preference %></h4>
+    <h4>Your appointment is with: <%= @client.barber_name %></h4>
   </div>
   <div class="col-sm-6">
   <form href="/client/<%= @client.name %>" method ="post">

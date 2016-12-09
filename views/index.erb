@@ -2,6 +2,7 @@
 <div class="well">
   <div class="row">
     <form action="/clients/new" method="post">
+      <h4>Current wait time: <%= @wait %></h4>
       <p>Add your name to the list</p>
       <div class="form-group">
         <label for="name">Your name:</label>
@@ -18,7 +19,6 @@
     <% @clients.each do |client| %>
       <h3><a href='/client/<%= client.id %>'><%= client.name %></a></h3>
       <h4>Appointment with: <% if client.barber_name != ''%><%= client.barber_name %><% else %>Next Available<% end %></h4>
-      <h4>Waiting time: <%= @waiting_time%></h4>
     <% end %>
   </div>
   <div class="col-sm-6">

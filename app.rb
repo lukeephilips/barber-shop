@@ -15,6 +15,7 @@ DB = PG.connect({:dbname => 'barber_shop_test'})
 get '/' do
   @barbers = Barber.all
   @clients = Client.all
+  @wait = Client.wait
   erb(:index)
 end
 
@@ -24,6 +25,7 @@ post '/barbers/new' do
   Barber.new(:name => barber_name, :specialty => specialty).save
   @barbers = Barber.all
   @clients = Client.all
+  @wait = Client.wait
   erb(:index)
 end
 
@@ -46,7 +48,7 @@ delete ('/barber/:id') do
   @barber.delete
   @barbers = Barber.all
   @clients = Client.all
-
+  @wait = Client.wait
   erb(:index)
 end
 
@@ -58,6 +60,7 @@ post '/clients/new' do
   client.assign_barber
   @barbers = Barber.all
   @clients = Client.all
+  @wait = Client.wait
   erb(:index)
 end
 
@@ -74,7 +77,7 @@ patch ('/client/:id') do
   @client = Client.find(id)
   @barbers = Barber.all
   @clients = Client.all
-
+  @wait = Client.wait
   erb(:index)
 end
 delete ('/client/:id') do
@@ -83,7 +86,7 @@ delete ('/client/:id') do
   @client.delete
   @barbers = Barber.all
   @clients = Client.all
-
+  @wait = Client.wait
   erb(:index)
 end
 

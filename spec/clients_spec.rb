@@ -63,4 +63,12 @@ describe Client do
       expect(Client.find(client4.id).barber_id).to eq(0)
     end
   end
+  describe '.wait' do
+    it "assigns client to no barber when they want something weird" do
+      Barber.new(:id => nil, :specialty => 'beard', :name => 'Randal').save
+      Client.new(:barber_id => nil, :id => nil, :preference => 'test', :name => "Bruce Willis").save
+      Client.new(:barber_id => nil, :id => nil, :preference => 'test', :name => "Bruce Willis").save
+      expect(Client.wait).to eq(15)
+    end
+  end
 end
