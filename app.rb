@@ -22,7 +22,7 @@ get '/' do
 end
 
 post '/barbers/new' do
-  name = params['name']
+  barber_name = params['barber_name']
   specialty = params['specialty']
   Barber.new(:name => barber_name, :specialty => specialty).save
   @barbers = Barber.all
@@ -54,7 +54,9 @@ end
 post '/clients/new' do
   name = params['name']
   preference = params['preference']
-  Client.new(:name => name, :preference => preference).save
+  client = Client.new(:name => name, :preference => preference)
+  client.save
+  client.assign_barber
   @barbers = Barber.all
   @clients = Client.all
 
@@ -101,6 +103,7 @@ if Barber.all == []
   barber1.save
   client1 = Client.new({:name => 'Mike', :preference => 'mustache trim'})
   client1.save
+  client1.assign_barber
 
   # staff = ['Jelks' => {:specialty => 'mustaches'}]
   #

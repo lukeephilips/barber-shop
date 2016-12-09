@@ -1,9 +1,10 @@
 class Client
-  attr_reader(:name, :preference, :barber_id, :id)
+  attr_reader(:name, :preference, :barber_id, :id, :barber_name)
   def initialize(attributes)
     @name = attributes[:name]
     @preference = attributes[:preference]
     @barber_id = attributes[:barber_id]
+    @barber_name = 'Next Available'
     @id = attributes[:id]
   end
   def save
@@ -19,13 +20,16 @@ class Client
   def update(key, value)
     DB.exec("UPDATE clients SET #{key} = '#{value}' WHERE id = #{self.id};")
   end
-  def assign_barber(preference)
+  def assign_barber
+    preference = self.preference
     barb_id = 0
+    barb_name =''
     barbers = DB.exec("SELECT * FROM barbers WHERE specialty LIKE '%#{preference}%'")
     barbers.each do |barber|
       barb_id = barber['id'].to_i
+      barb_name = barber['name']
     end
-    DB.exec("UPDATE clients SET barber_id = #{barb_id} WHERE id = #{self.id} RETURNING barber_id;")
+    DB.exec("UPDATE clients SET barber_id = #{barb_id}, barber_name = '#{barb_name}' WHERE id = #{self.id} RETURNING barber_id;")
   end
 
   def self.all

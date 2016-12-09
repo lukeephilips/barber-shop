@@ -39,9 +39,9 @@ describe Barber do
     it 'removes barber_id from client when a barber is deleted' do
       new_barber  = Barber.new(:id => nil, :specialty => 'mustache trim', :name => "Kyle")
       new_barber.save
-      client  = Client.new(:id => nil, :barber_id => new_barber.id, :name => "Tim")
+      client  = Client.new(:id => nil, :barber_id => new_barber.id, :name => "Tim", :preference => 'trim')
       client.save
-      client.assign_barber(new_barber)
+      client.assign_barber
       new_barber.delete
       expect(Client.find(client.id).barber_id).to eq(0)
     end
@@ -63,9 +63,9 @@ describe Barber do
   describe '#clients' do
     it 'returns a client list for a provided barber' do
       @barber1.save
-      client  = Client.new(:id => nil, :barber_id => @barber1.id, :name => "LaMichael")
+      client  = Client.new(:id => nil, :barber_id => @barber1.id, :name => "LaMichael", :preference => 'trim')
       client.save
-      client.assign_barber('mustache')
+      client.assign_barber
       expect(@barber1.clients).to eq([client])
     end
   end

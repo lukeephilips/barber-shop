@@ -4,7 +4,7 @@
     <h1>Today's waiting list:</h1>
     <% @clients.each do |client| %>
       <h3><a href='/client/<%= client.id %>'><%= client.name %></a></h3>
-      <h4>In for: <%= client.preference %></h4>
+      <h4>Appointment with: <%= client.barber_name %></h4>
     <% end %>
   </div>
   <div class="col-sm-6">
@@ -24,12 +24,7 @@
         <label for="name">Your name:</label>
         <input type="text" name="name" class="form-control">
         <label for="specialty">What are you looking for?</label>
-        <select class="form-control" name="preference">
-          <option>mustache wax</option>
-          <option>beard trim</option>
-          <option>haircut</option>
-          <option>shave</option>
-        </select>
+        <input type="text" name="preference">
         <button type="submit" class="btn btn-danger">Find a barber</button>
       </div>
     </form>

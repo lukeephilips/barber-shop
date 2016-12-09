@@ -46,7 +46,7 @@ describe Client do
 
       client4  = Client.new(:barber_id => nil, :id => nil, :preference => 'test', :name => "Bruce Willis")
       client4.save
-      client4.assign_barber(client4.preference)
+      client4.assign_barber
       expect(Client.find(client4.id).barber_id).to eq(barber4.id)
     end
   end
@@ -57,7 +57,7 @@ describe Client do
 
       client4  = Client.new(:barber_id => nil, :id => nil, :preference => 'test', :name => "Bruce Willis")
       client4.save
-      client4.assign_barber(client4.preference)
+      client4.assign_barber
       expect(Client.find(client4.id).barber_id).to eq(0)
     end
   end
