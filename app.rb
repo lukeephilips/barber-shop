@@ -32,6 +32,8 @@ end
 
 get ('/barber/:id') do
   @barber = Barber.find(params['id'].to_i)
+  @clients = Client.all
+
   erb(:barber)
 end
 patch ('/barber/:id') do
@@ -64,13 +66,16 @@ end
 
 get ('/client/:id') do
   @client = Client.find(params['id'].to_i)
+  @barbers = Barber.all
   erb(:client)
 end
 patch ('/client/:id') do
   id = params['id'].to_i
   @client = Client.find(id)
-  @client.update('name', params['update_name'])
+  @new_barber = Barber.find(params['select_barber'].to_i)
+  @client.update(@new_barber)
   @client = Client.find(id)
+  @barbers = Barber.all
   erb(:client)
 end
 delete ('/client/:id') do

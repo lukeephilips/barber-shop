@@ -7,9 +7,12 @@
   <div class="col-sm-6">
   <form href="/client/<%= @client.name %>" method ="post">
     <input type="hidden" name="_method" value="patch">
-    <label for="update_name">Update your name:</label>
-    <input type="text" name="update_name" class="form-control">
-    <label for="update_name"></label>
+    <label for="update_name">Choose a barber:</label>
+    <select class="form-control" name="select_barber">
+      <% @barbers.each do |barber| %>
+      <option value="<%= barber.id %>"><%= barber.name %></option>
+      <% end %>
+    </select>
     <button type="submit" class="btn btn-danger">Update</button>
   </form>
   <form action="/client/<%= @client.id %>" method="post">

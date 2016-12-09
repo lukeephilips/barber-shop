@@ -17,14 +17,16 @@ class Client
   def delete
     DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
   end
-  def update(key, value)
-    DB.exec("UPDATE clients SET #{key} = '#{value}' WHERE id = #{self.id};")
+  def update(new_barber)
+    id = new_barber.id
+    name = new_barber.name
+    DB.exec("UPDATE clients SET barber_id = #{id}, barber_name = '#{name}' WHERE id = #{self.id};")
   end
   def assign_barber
     preference = self.preference
     barb_id = 0
     barb_name =''
-    barbers = DB.exec("SELECT * FROM barbers WHERE specialty LIKE '%#{preference}%'")
+    barbers = DB.exec("SELECT * FROM barbers WHERE UPPER(specialty) LIKE UPPER('%#{preference}%')")
     barbers.each do |barber|
       barb_id = barber['id'].to_i
       barb_name = barber['name']
