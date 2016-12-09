@@ -1,33 +1,35 @@
 
-<div class="row well">
+<div class="well">
+  <div class="row">
+    <form action="/clients/new" method="post">
+      <p>Add your name to the list</p>
+      <div class="form-group">
+        <label for="name">Your name:</label>
+        <input type="text" name="name" class="form-control">
+        <label for="specialty">What are you here for?</label>
+        <input type="text" name="preference" class="form-control">
+        <button type="submit" class="btn btn-danger">Find a barber</button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
   <div class="col-sm-6">
     <h1>Today's waiting list:</h1>
     <% @clients.each do |client| %>
       <h3><a href='/client/<%= client.id %>'><%= client.name %></a></h3>
       <h4>Appointment with: <% if client.barber_name != ''%><%= client.barber_name %><% else %>Next Available<% end %></h4>
+      <h4>Waiting time: <%= @waiting_time%></h4>
     <% end %>
   </div>
   <div class="col-sm-6">
     <h1>Meet our Barbers:</h1>
     <% @barbers.each do |barber| %>
       <h3><a href='/barber/<%= barber.id %>'><%= barber.name %></a></h3>
-      <h4><%= barber.specialty %></h4>
+      <h4>Specializes in: <%= barber.specialty %></h4>
     <% end %>
   </div>
 </div>
 <div class="row well">
-  <div class="col-sm-6">
-    <form action="/clients/new" method="post">
-      <p>New client?</p>
-      <div class="form-group">
-        <label for="name">Your name:</label>
-        <input type="text" name="name" class="form-control">
-        <label for="specialty">What are you looking for?</label>
-        <input type="text" name="preference">
-        <button type="submit" class="btn btn-danger">Find a barber</button>
-      </div>
-    </form>
-  </div>
   <div class="col-sm-6">
     <form action="/barbers/new" method="post">
       <p>Are you a barber? Would you like to join the team?</p>

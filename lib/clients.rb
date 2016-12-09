@@ -42,6 +42,9 @@ class Client
       preference = a['preference']
       barber_id = a['barber_id'].to_i
       barber_name = a['barber_name']
+      if !barber_name
+        barber_name=  "Next Available"
+      end
       id = a['id'].to_i
       clients.push(Client.new(:name => name, :preference => preference, :barber_id => barber_id, :barber_name => barber_name,:id => id))
     end
@@ -56,4 +59,8 @@ class Client
     end
     found_client
   end
+  # def self.wait
+  #   @wait = (15 * self.all.count)
+  #   binding.pry
+  # end
 end

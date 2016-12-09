@@ -15,6 +15,7 @@ class Barber
   def delete
     # DB.exec("DELETE FROM barbers WHERE id = #{self.id()};")
     DB.exec("UPDATE clients SET barber_id = NULL, barber_name = NULL WHERE barber_id = #{self.id()};")
+    
   end
   def update(key, value)
     DB.exec("UPDATE barbers SET #{key} = '#{value}' WHERE id = #{self.id};")

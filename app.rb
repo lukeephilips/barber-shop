@@ -12,9 +12,6 @@ require 'pg'
 
 DB = PG.connect({:dbname => 'barber_shop_test'})
 
-
-
-
 get '/' do
   @barbers = Barber.all
   @clients = Client.all
@@ -76,7 +73,9 @@ patch ('/client/:id') do
   @client.update(@new_barber)
   @client = Client.find(id)
   @barbers = Barber.all
-  erb(:client)
+  @clients = Client.all
+
+  erb(:index)
 end
 delete ('/client/:id') do
   id = params['id'].to_i
@@ -116,6 +115,10 @@ if Barber.all == []
   barber3 = Barber.new({:name => 'Pemberton', :specialty => 'haircut'})
   barber3.save
   client3 = Client.new({:name => 'Jim', :preference => 'haircut'})
+  client3.save
+  client3.assign_barber
+  barber3 = Barber.new({:name => 'DaVito', :specialty => 'shave'})
+  barber3.save
   client3.save
   client3.assign_barber
 

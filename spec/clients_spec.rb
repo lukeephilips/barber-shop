@@ -35,8 +35,10 @@ describe Client do
     it "updates a clients preference" do
       client  = Client.new(:id => nil, :preference => 'trim', :name => "Bruce Willis")
       client.save
-      client.update('preference', 'buzz')
-      expect(Client.all[0].preference).to eq('buzz')
+      barber = Barber.new(:id => nil, :specialty => 'test', :name => 'Randal')
+      barber.save
+      client.update(barber)
+      expect(Client.all[0].barber_name).to eq('Randal')
     end
   end
   describe '#assign_barber' do
