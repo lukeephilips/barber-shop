@@ -59,7 +59,6 @@ post '/clients/new' do
   client.assign_barber
   @barbers = Barber.all
   @clients = Client.all
-binding.pry
   erb(:index)
 end
 
@@ -99,11 +98,21 @@ end
 
 
 if Barber.all == []
-  barber1 = Barber.new({:name => 'Jelks', :specialty => 'mustache trim'})
+  barber1 = Barber.new({:name => 'Jelks', :specialty => 'mustache wax'})
   barber1.save
-  client1 = Client.new({:name => 'Mike', :preference => 'mustache trim'})
+  client1 = Client.new({:name => 'Mike', :preference => 'mustache'})
   client1.save
   client1.assign_barber
+  barber2 = Barber.new({:name => 'Winthrop', :specialty => 'beard trim'})
+  barber2.save
+  client2 = Client.new({:name => 'Dave', :preference => 'beard trim'})
+  client2.save
+  client2.assign_barber
+  barber3 = Barber.new({:name => 'Pemberton', :specialty => 'haircut'})
+  barber3.save
+  client3 = Client.new({:name => 'Jim', :preference => 'haircut'})
+  client3.save
+  client3.assign_barber
 
   # staff = ['Jelks' => {:specialty => 'mustaches'}]
   #

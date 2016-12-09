@@ -17,4 +17,10 @@ describe('the home path', {:type => :feature}) do
       click_button('Join')
       expect(page).to have_content "Jeeves"
   end
+  it 'allows adding a customer' do
+    fill_in('name', :with => 'Jimmy')
+    fill_in('preference', :with => 'mustache')
+      click_button('Find a barber')
+      expect(page).to have_content "Jimmy"
+  end
 end
