@@ -1,5 +1,5 @@
 require('rspec')
-require('pry')
+require('pry-nav')
 require('barbers')
 require('clients')
 require('pg')
