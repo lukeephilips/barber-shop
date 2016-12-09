@@ -23,12 +23,23 @@ describe Barber do
       expect(barber).to eq(barber)
     end
   end
+  # describe '#delete' do
+  #   it "returns an empty array when only item is deleted" do
+  #     barber  = Barber.new(:id => nil, :specialty => 'fades', :name => "Darius")
+  #     barber.save
+  #     barber.delete
+  #     expect(Barber.all).to eq([])
+  #   end
+  # end
   describe '#delete' do
-    it "returns an empty array when only item is deleted" do
-      barber  = Barber.new(:id => nil, :specialty => 'fades', :name => "Darius")
-      barber.save
-      barber.delete
-      expect(Barber.all).to eq([])
+    it 'removes barber_id from client when a barber is deleted' do
+      new_barber  = Barber.new(:id => nil, :specialty => 'fades', :name => "Kyle")
+      new_barber.save
+      client  = Client.new(:id => nil, :barber_id => new_barber.id, :name => "Tim")
+      client.save
+      client.assign_barber(new_barber)
+      new_barber.delete
+      expect(Client.find(client.id).barber_id).to eq(0)
     end
   end
   describe '#update' do

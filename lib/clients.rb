@@ -35,4 +35,13 @@ class Client
     end
     clients
   end
+  def self.find(id)
+    found_client = nil
+    Client.all.each do |client|
+      if client.id == id
+        found_client = client
+      end
+    end
+    found_client
+  end
 end
