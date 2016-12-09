@@ -39,4 +39,10 @@ describe Barber do
       expect(Barber.all[0].specialty).to eq('shave')
     end
   end
+  describe '.find' do
+    it 'returns a barber by id' do
+      @barber1.save
+      expect(Barber.find(@barber1.id)).to eq(@barber1)
+    end
+  end
 end

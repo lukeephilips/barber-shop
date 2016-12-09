@@ -1,12 +1,13 @@
 class Client
-  attr_reader(:name, :preference, :id)
+  attr_reader(:name, :preference, :barber_id, :id)
   def initialize(attributes)
     @name = attributes[:name]
     @preference = attributes[:preference]
+    @barber_id = attributes[:barber_id]
     @id = attributes[:id]
   end
   def save
-    result = DB.exec("INSERT INTO clients (name) VALUES ('#{name}') RETURNING id;")
+    result = DB.exec("INSERT INTO clients (name, preference) VALUES ('#{name}', '#{preference}') RETURNING id;")
     @id = result[0]['id'].to_i
   end
   def ==(other)

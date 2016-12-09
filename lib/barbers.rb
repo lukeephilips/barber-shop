@@ -30,4 +30,13 @@ class Barber
     end
     barbers
   end
+  def self.find(id)
+    found_barber = nil
+    Barber.all.each do |barber|
+      if barber.id == id
+        found_barber = barber
+      end
+    end
+    found_barber
+  end
 end
