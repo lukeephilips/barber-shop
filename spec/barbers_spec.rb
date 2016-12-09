@@ -45,4 +45,13 @@ describe Barber do
       expect(Barber.find(@barber1.id)).to eq(@barber1)
     end
   end
+  describe '#clients' do
+    it 'returns a client list for a provided barber' do
+      @barber1.save
+      client  = Client.new(:id => nil, :barber_id => @barber1.id, :name => "LaMichael")
+      client.save
+      client.assign_barber(@barber1)
+      expect(@barber1.clients).to eq([client])
+    end
+  end
 end

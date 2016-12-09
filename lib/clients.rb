@@ -19,6 +19,9 @@ class Client
   def update(key, value)
     DB.exec("UPDATE clients SET #{key} = '#{value}' WHERE id = #{self.id};")
   end
+  def assign_barber(barber)
+    DB.exec("UPDATE clients SET barber_id = '#{barber.id}' WHERE id = #{self.id};")
+  end
 
   def self.all
     clients = []
@@ -26,8 +29,9 @@ class Client
     returned_clients.each do |a|
       name = a['name']
       preference = a['preference']
+      barber_id = a['barber_id'].to_i
       id = a['id'].to_i
-      clients.push(Client.new(:name => name, :preference => preference, :id => id))
+      clients.push(Client.new(:name => name, :preference => preference, :barber_id => barber_id, :id => id))
     end
     clients
   end

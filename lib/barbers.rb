@@ -18,6 +18,17 @@ class Barber
   def update(key, value)
     DB.exec("UPDATE barbers SET #{key} = '#{value}' WHERE id = #{self.id};")
   end
+  def clients
+    client_list = []
+    clients = DB.exec("SELECT * FROM clients WHERE barber_id = #{self.id};")
+    clients.each do |client|
+      name = client['name']
+      id = client['id'].to_i
+      preference = client['preference']
+      client_list.push(Client.new(:name => name, :preference => preference, :id => id))
+    end
+    client_list
+  end
 
   def self.all
     barbers = []
