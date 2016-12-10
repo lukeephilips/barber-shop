@@ -1,0 +1,26 @@
+body {
+  background-image: url(https://s-media-cache-ak0.pinimg.com/736x/81/ed/48/81ed4895e0d8ab609e2e6678c2dd3a48.jpg);
+  color: #291621
+}
+a {
+  color: #291D16
+}
+#title a{
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+}
+h1 {
+  font-family: Oldenburg;
+  color: #010203;
+}
+
+.well {
+  background-color: #626D75
+}
+.panel-body {
+  background-color: #999A9B
+}
+.panel-heading {
+  color:black;
+}

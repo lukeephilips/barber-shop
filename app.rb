@@ -104,7 +104,7 @@ end
 
 
 
-if Barber.all == []
+if !@barbers
   barber1 = Barber.new({:name => 'Jelks', :specialty => 'mustache wax'})
   barber1.save
   client1 = Client.new({:name => 'Mike', :preference => 'mustache'})
@@ -122,8 +122,10 @@ if Barber.all == []
   client3.assign_barber
   barber3 = Barber.new({:name => 'DaVito', :specialty => 'shave'})
   barber3.save
-  client3.save
-  client3.assign_barber
+  client4 = Client.new({:name => 'Kieth', :preference => 'shave'})
+  client4.save
+  client5 = Client.new({:name => 'Carl'})
+  client5.save
 
   # staff = ['Jelks' => {:specialty => 'mustaches'}]
   #

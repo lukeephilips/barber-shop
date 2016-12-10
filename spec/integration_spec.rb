@@ -23,4 +23,13 @@ describe('the home path', {:type => :feature}) do
       click_button('Find a barber')
       expect(page).to have_content "Jimmy"
   end
+  it 'allows editing a barber' do
+    fill_in('barber_name', :with => 'Cleaves')
+    select('mustache wax', :from => 'specialty')
+      click_button('Join')
+      click_link('Cleaves')
+      fill_in('update_name', :with => 'Bleaves')
+      click_button('Update')
+      expect(page).to have_content "Bleaves"
+  end
 end

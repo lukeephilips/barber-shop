@@ -1,23 +1,32 @@
-<div class="row">
+<div class="row ">
   <div class="col-sm-6">
     <h1><%= @client.name %></h1>
     <h4>You entered: <%= @client.preference %></h4>
     <h4>Your appointment is with: <%= @client.barber_name %></h4>
   </div>
   <div class="col-sm-6">
-  <form href="/client/<%= @client.name %>" method ="post">
-    <input type="hidden" name="_method" value="patch">
-    <label for="update_name">Choose a barber:</label>
-    <select class="form-control" name="select_barber">
-      <% @barbers.each do |barber| %>
-      <option value="<%= barber.id %>"><%= barber.name %></option>
-      <% end %>
-    </select>
-    <button type="submit" class="btn btn-danger">Change</button>
-  </form>
-  <form action="/client/<%= @client.id %>" method="post">
+    <div class="row">
+      <form href="/client/<%= @client.name %>" method ="post">
+        <div class="form-group col-xs-6">
+          <input type="hidden" name="_method" value="patch">
+          <label for="update_name">Choose a barber:</label>
+          <select class="form-control" name="select_barber">
+            <% @barbers.each do |barber| %>
+            <option value="<%= barber.id %>"><%= barber.name %></option>
+            <% end %>
+          </select>
+          <button type="submit" class="btn btn-danger">Change</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4 off-sm-3">
+
+    <form action="/client/<%= @client.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
-      <button type="submit" class="btn btn-danger">Appointment complete</button>
+      <button type="submit" class="btn btn-lg btn-danger">Appointment complete</button>
     </form>
   </div>
 </div>
