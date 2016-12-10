@@ -62,7 +62,7 @@ class Client
   def self.wait
     count = self.all.count - Barber.all.count
     if count > 0
-      @wait = count * 15
+      @wait = (count * 15).to_s + ' minutes'
     else
       @wait = 'none'
     end

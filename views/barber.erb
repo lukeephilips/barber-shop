@@ -1,20 +1,23 @@
 <div class="">
+  <h1><%= @barber.name %></h1>
+  <h2>Specializing in: <%= @barber.specialty %></h2>
+  <div class="row">
+    <form href="/barber/<%= @barber.name %>" method ="post">
+      <input type="hidden" name="_method" value="patch">
+      <div class="col-sm-4">
+        <label for="update_name">Update your name:</label>
+        <div class="input-group">
+          <input type="text" name="update_name" class="form-control">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-danger">Update</button>
+          </span>
+        </div>
+      </div>
 
-<h1><%= @barber.name %></h1>
-<h2>Specializing in: <%= @barber.specialty %></h2>
-<div class="row">
-  <form href="/barber/<%= @barber.name %>" method ="post">
-    <input type="hidden" name="_method" value="patch">
-    <div class="col-xs-6">
-      <label for="update_name">Update your name:</label>
-      <input type="text" name="update_name" class="form-control">
-      <button type="submit" class="btn btn-danger">Update</button>
-    </div>
-  </form>
+    </form>
+  </div>
+    <form action="/barber/<%= @barber.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger">Clear all appointments</button>
+    </form>
 </div>
-
-<form action="/barber/<%= @barber.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button type="submit" class="btn btn-danger">Clear all appointments</button>
-  </form>
-</div

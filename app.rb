@@ -10,7 +10,7 @@ require "./lib/barbers"
 also_reload('lib/**/*.rb')
 require 'pg'
 
-DB = PG.connect({:dbname => 'barber_shop_test'})
+DB = PG.connect({:dbname => 'barber_shop'})
 
 get '/' do
   @barbers = Barber.all
@@ -126,21 +126,4 @@ if !@barbers
   client4.save
   client5 = Client.new({:name => 'Carl'})
   client5.save
-
-  # staff = ['Jelks' => {:specialty => 'mustaches'}]
-  #
-  # staff.each do |a|
-  #   barber = Barber.new({:id => nil, :name => "#{staff[0].keys[0]}", :specialty => "#{staff[0].values[0][:specialty]}"})
-  #   binding.pry
-  #   barber.save
-  #   # a[1].each do |b|
-  #   #   if !Client.all.any?{|a| a.name == b}
-  #   #     client = Client.new({:id => nil, :name => "#{b}"})
-  #   #     client.save
-  #   #   else
-  #   #     client = Client.find_by_name(b)
-  #   #   end
-  #   #   DB.exec("UPDATE client SET barber_id = #{barber.id} WHERE id = #{self.id};")
-  #   # end
-#   end
 end

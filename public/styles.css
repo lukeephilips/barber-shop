@@ -24,3 +24,7 @@ h1 {
 .panel-heading {
   color:black;
 }
+img {
+  height:375px;
+  /*height: 100%;*/
+}
