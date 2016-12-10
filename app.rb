@@ -90,40 +90,19 @@ delete ('/client/:id') do
   erb(:index)
 end
 
+binding.pry
+# seed database with staff and clients
+if !Barber.all.any?
+  staff = {"Jelks" => "mustache wax", 'Winthrop' => 'beard trim','Pemberton' => 'haircut', 'DaVito' => 'shave'}
+  regulars = {'Mike' => 'mustache', 'Dave' => 'beard trim','Jim' => 'haircut','Kieth' => 'shave','Carl' => 'cornrows'}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-if !@barbers
-  barber1 = Barber.new({:name => 'Jelks', :specialty => 'mustache wax'})
-  barber1.save
-  client1 = Client.new({:name => 'Mike', :preference => 'mustache'})
-  client1.save
-  client1.assign_barber
-  barber2 = Barber.new({:name => 'Winthrop', :specialty => 'beard trim'})
-  barber2.save
-  client2 = Client.new({:name => 'Dave', :preference => 'beard trim'})
-  client2.save
-  client2.assign_barber
-  barber3 = Barber.new({:name => 'Pemberton', :specialty => 'haircut'})
-  barber3.save
-  client3 = Client.new({:name => 'Jim', :preference => 'haircut'})
-  client3.save
-  client3.assign_barber
-  barber3 = Barber.new({:name => 'DaVito', :specialty => 'shave'})
-  barber3.save
-  client4 = Client.new({:name => 'Kieth', :preference => 'shave'})
-  client4.save
-  client5 = Client.new({:name => 'Carl'})
-  client5.save
+  staff.each do |a,b|
+    barber = Barber.new(:id => nil, :name => a, :specialty => b)
+    barber.save
+  end
+  regulars.each do |a,b|
+    client = Client.new(:name => a, :preference => b )
+    client.save
+    client.assign_barber
+  end
 end

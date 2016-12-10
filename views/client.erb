@@ -9,7 +9,7 @@
       <form href="/client/<%= @client.name %>" method ="post">
         <div class="form-group col-xs-6">
           <input type="hidden" name="_method" value="patch">
-          <label for="update_name">Choose a barber:</label>
+          <label for="update_name">Change your barber:</label>
           <select class="form-control" name="select_barber">
             <% @barbers.each do |barber| %>
             <option value="<%= barber.id %>"><%= barber.name %></option>
